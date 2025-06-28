@@ -1,21 +1,9 @@
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/JoinUs.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 function JoinUs() {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    position: 'Web Designer',
-    experience: '',
-    details: '',
-    resume: null
-  });
-  const [loading, setLoading] = useState(false);
-  const [previewUrl, setPreviewUrl] = useState(null);
   const navigate = useNavigate();
   const positions = [
     {
@@ -49,59 +37,7 @@ function JoinUs() {
       path: "digital-marketer"
     }
   ];
-  const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
-    if (type === 'file') {
-      const file = files[0];
-      setFormData(prev => ({
-        ...prev,
-        [name]: file
-      }));
-      if (file) {
-        setPreviewUrl(file.name);
-      }
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
-    }
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const formDataToSend = new FormData();
-      for (const key in formData) {
-        formDataToSend.append(key, formData[key]);
-      }
-      const response = await fetch('http://localhost:5000/api/careers', {
-        method: 'POST',
-        body: formDataToSend
-      });
-      const data = await response.json();
-      if (data.success) {
-        toast.success('Application submitted successfully!');
-        setFormData({
-          name: '',
-          phone: '',
-          email: '',
-          position: 'Web Designer',
-          experience: '',
-          details: '',
-          resume: null
-        });
-        setPreviewUrl(null);
-      } else {
-        toast.error(data.message);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      toast.error('Failed to submit application. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
+
   const handlePositionClick = (path) => {
     navigate(`/join-us/${path}`);
   };
