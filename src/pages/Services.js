@@ -15,10 +15,8 @@ function Services() {
           <div className="services-container">
             <div className="service-item">
               <span className="icon"><i className="fa fa-laptop"></i></span>
-             <a href="https://shore-rffu.vercel.app/" target="_blank" rel="noopener noreferrer">
              <h6>Sustainable devices</h6>
               <p>We design energy meters, smart monitoring systems, and groundbreaking sand energy solutions. Our devices redefine efficiency and sustainability, driving a future powered by innovation and responsibility. Heading to solve world's major problem.</p>
-            </a>
             </div>  
             
             <div className="service-item">
